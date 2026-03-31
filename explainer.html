@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Understanding your portfolio code</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Georgia, serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #222;
+      background: #f9f7f4;
+    }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Header ── */
+    .page-header {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 40px 28px 36px;
+    }
+    .page-header .back {
+      display: inline-block;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    .page-header h1 {
+      font-size: 1.9rem;
+      font-weight: normal;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .page-header p {
+      font-size: 0.95rem;
+      color: #555;
+      max-width: 560px;
+    }
+
+    /* ── Layout ── */
+    .page { max-width: 780px; margin: 0 auto; padding: 0 28px 80px; }
+
+    /* ── Section groups ── */
+    .group {
+      margin-top: 48px;
+    }
+    .group-label {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 16px;
+    }
+
+    /* ── Explainer card ── */
+    .card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .card-code {
+      background: #0f0f0f;
+      padding: 14px 18px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #d4d4d4;
+      overflow-x: auto;
+    }
+    .card-body {
+      padding: 16px 20px;
+    }
+    .card-body h3 {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-family: Arial, sans-serif;
+    }
+    .card-body p {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 10px;
+    }
+    .card-body p:last-child { margin-bottom: 0; }
+
+    /* ── Analogy pill ── */
+    .analogy {
+      display: inline-block;
+      background: #fef9c3;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      color: #713f12;
+      margin-top: 4px;
+    }
+    .analogy::before { content: "💡 Think of it as: "; font-weight: bold; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid #e5e5e5;
+      padding: 28px;
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    footer a { color: #2563eb; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width: 780px; margin: 0 auto;">
+    <a class="back" href="index.html">← Back to workshop guide</a>
+    <h1>Understanding your portfolio code</h1>
+    <p>A plain-English walkthrough of every part of your <code>index.html</code> — what each line does and why it's there. No experience needed.</p>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ── THE BONES ── -->
+  <div class="group">
+    <div class="group-label">The skeleton — every HTML file starts with this</div>
+
+    <div class="card">
+      <div class="card-code">&lt;!DOCTYPE html&gt;</div>
+      <div class="card-body">
+        <h3>Document type declaration</h3>
+        <p>Tells the browser "this file is written in modern HTML." It's not a tag — it's a declaration. Every HTML file ever made starts with this exact line.</p>
+        <span class="analogy">the cover page of a document that tells you what format it's in.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;html lang="en"&gt; ... &lt;/html&gt;</div>
+      <div class="card-body">
+        <h3>The root element</h3>
+        <p>Everything on your page lives inside this tag. The <code>lang="en"</code> tells the browser (and screen readers) the page is written in English — useful for accessibility and search engines.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;head&gt; ... &lt;/head&gt;</div>
+      <div class="card-body">
+        <h3>The head — invisible settings</h3>
+        <p>Contains information <em>about</em> the page rather than content that appears on it. The browser reads this section but doesn't display it to the visitor.</p>
+        <span class="analogy">the settings menu of your page — the user never sees it but it affects everything.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;meta charset="UTF-8"/&gt;</div>
+      <div class="card-body">
+        <h3>Character encoding</h3>
+        <p>Tells the browser which character set to use when reading your file. UTF-8 supports virtually every character in every language — including accented letters, em dashes, and emoji. Without it, special characters might show up as garbled symbols.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</div>
+      <div class="card-body">
+        <h3>Viewport — makes your site work on phones</h3>
+        <p>The viewport is the visible area of the browser window. Without this line, phones would pretend to have a wide desktop screen and shrink everything down to fit — making your text tiny and unreadable. This line says: "use the real screen width, at normal zoom."</p>
+        <span class="analogy">telling a phone "don't zoom out to show a desktop version — just show my page at normal size."</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;title&gt;Your Name&lt;/title&gt;</div>
+      <div class="card-body">
+        <h3>Page title</h3>
+        <p>The text that appears in the browser tab and in search engine results. It's not visible on the page itself. Change this to your actual name.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;body&gt; ... &lt;/body&gt;</div>
+      <div class="card-body">
+        <h3>The body — everything visitors actually see</h3>
+        <p>All your visible content — the sidebar, the tabs, the About section, everything — lives inside the body tag. If it's in the head, it's invisible. If it's in the body, it shows up on the page.</p>
+        <span class="analogy">the actual page of a book, as opposed to its cover and copyright info.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CSS ── -->
+  <div class="group">
+    <div class="group-label">The style block — how things look</div>
+
+    <div class="card">
+      <div class="card-code">&lt;style&gt; ... &lt;/style&gt;</div>
+      <div class="card-body">
+        <h3>Where your CSS lives</h3>
+        <p>Everything between these tags is CSS — the language that controls how your page looks. HTML is the structure; CSS is the design. The browser reads the style block first, then applies those rules to the HTML below.</p>
+        <span class="analogy">HTML is the furniture in a room. CSS is the paint, fabric, and lighting.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">* { box-sizing: border-box; margin: 0; padding: 0; }</div>
+      <div class="card-body">
+        <h3>The universal reset</h3>
+        <p>The <code>*</code> means "apply this to every element." Browsers add their own default spacing to things like headings and lists — this line removes all of that so you start from a clean, predictable base. <code>box-sizing: border-box</code> means padding and borders are included inside an element's width, not added on top of it.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">body { font-family: Georgia, serif; font-size: 16px; line-height: 1.7; color: #222; background: #fff; }</div>
+      <div class="card-body">
+        <h3>Page-wide defaults</h3>
+        <p>Sets the font (Georgia, a classic serif), base text size (16px), and line spacing (1.7× the text height — loose enough to read comfortably). <code>#222</code> is near-black for text. <code>#fff</code> is white for the background. All other elements on the page inherit these unless you override them.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }</div>
+      <div class="card-body">
+        <h3>Link styles</h3>
+        <p>All links are blue with no underline by default. The underline appears only on hover. The <code>:hover</code> part is called a <strong>pseudo-class</strong> — a rule that applies only when something is in a certain state (in this case, when the mouse is over it).</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; color: #555; border-bottom: 1px solid #e5e5e5; }</div>
+      <div class="card-body">
+        <h3>Section headings</h3>
+        <p>The About, News, Projects, and Education headings. They're kept the same size as body text (<code>1rem</code>) but stand out through uppercase letters and wider letter spacing. The thin grey line underneath each one acts as a divider. <code>#555</code> is a mid-grey — softer than the black body text so headings don't shout.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.wrapper { display: flex; max-width: 960px; margin: 0 auto; }</div>
+      <div class="card-body">
+        <h3>The outer container</h3>
+        <p><code>display: flex</code> is the key instruction — it makes the sidebar and main content sit side by side instead of stacking on top of each other. <code>max-width: 960px</code> stops the layout getting too wide on large monitors. <code>margin: 0 auto</code> centres the whole page horizontally.</p>
+        <span class="analogy">a shelf that holds two boxes side by side, centred in the room, with a maximum width.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.sidebar { width: 240px; position: sticky; top: 0; height: 100vh; }</div>
+      <div class="card-body">
+        <h3>Sticky sidebar</h3>
+        <p><code>width: 240px</code> locks the sidebar to a fixed width. <code>position: sticky; top: 0</code> is what makes it stay in place as you scroll — it "sticks" to the top of the viewport. <code>height: 100vh</code> makes it exactly as tall as the screen (<code>vh</code> = viewport height, so <code>100vh</code> = 100% of the screen height).</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.avatar { width: 140px; height: 140px; border-radius: 50%; background: #dbeafe; }</div>
+      <div class="card-body">
+        <h3>The circular photo</h3>
+        <p>Equal width and height make it a square. <code>border-radius: 50%</code> then rounds the corners all the way into a circle — 50% means "round by half the element's size", which always produces a perfect circle. <code>#dbeafe</code> is the light blue placeholder background, visible only if no image is set.</p>
+        <span class="analogy">cutting a square photo into a circle with scissors.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.sidebar-links li::before { content: "→"; color: #aaa; }</div>
+      <div class="card-body">
+        <h3>The arrow before each link</h3>
+        <p><code>::before</code> is a CSS trick that inserts content automatically before an element — without you having to type it in the HTML. Here it inserts a grey <code>→</code> arrow before each link in the sidebar. If you wanted a bullet, dot, or any other character instead, you'd just change the <code>content</code> value.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.main { flex: 1; padding: 0 40px 80px; }</div>
+      <div class="card-body">
+        <h3>The main content area</h3>
+        <p><code>flex: 1</code> means "take up all the remaining width after the sidebar." So if the page is 960px wide and the sidebar is 240px, the main area automatically fills the remaining 720px. <code>padding</code> adds breathing room inside — none at the top, 40px on the sides, 80px at the bottom.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.tabs { display: flex; justify-content: center; position: sticky; top: 0; background: #fff; z-index: 10; }</div>
+      <div class="card-body">
+        <h3>The sticky tab bar</h3>
+        <p><code>justify-content: center</code> centres the tabs horizontally. <code>position: sticky; top: 0</code> keeps the bar pinned to the top as you scroll. <code>background: #fff</code> gives it a solid white background — without this, content would scroll visibly through the transparent bar. <code>z-index: 10</code> ensures the bar sits on top of everything else when content scrolls underneath it.</p>
+        <span class="analogy">z-index is like the order of layers in a stack of papers — higher number = on top.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.tabs a { border-radius: 99px; transition: background 0.15s, color 0.15s; }</div>
+      <div class="card-body">
+        <h3>Pill-shaped tabs with smooth hover</h3>
+        <p><code>border-radius: 99px</code> is a deliberately large number — large enough to always produce fully rounded ends regardless of how wide the tab is, creating a pill shape. <code>transition</code> makes the background and text colour change animate smoothly over 0.15 seconds on hover, instead of snapping instantly.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.section { padding-top: 40px; scroll-margin-top: 60px; }</div>
+      <div class="card-body">
+        <h3>Section spacing and scroll behaviour</h3>
+        <p><code>padding-top: 40px</code> adds breathing room at the top of each section so content doesn't start right at the tab bar. <code>scroll-margin-top: 60px</code> is specifically for when you click a tab — without it, the browser scrolls the section heading right to the top of the viewport, hiding it behind the sticky tab bar. This adds a 60px offset so the heading lands just below the bar.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.news-date { white-space: nowrap; width: 90px; flex-shrink: 0; }</div>
+      <div class="card-body">
+        <h3>The date column in News</h3>
+        <p><code>white-space: nowrap</code> stops the date from ever wrapping onto two lines. <code>width: 90px</code> fixes the column at exactly that width. <code>flex-shrink: 0</code> tells the flex layout never to make it narrower, even if space is tight — the date column always stays 90px wide and the text beside it adjusts.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">.project-list li strong { display: block; }</div>
+      <div class="card-body">
+        <h3>Project titles on their own line</h3>
+        <p><code>strong</code> is normally an <strong>inline</strong> element — it flows within a line of text like a bold word in a sentence. <code>display: block</code> changes it to a <strong>block</strong> element, which forces it onto its own line, pushing the description text underneath it. This is a very common CSS pattern for turning inline elements into their own rows.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">@media (max-width: 640px) { .wrapper { flex-direction: column; } ... }</div>
+      <div class="card-body">
+        <h3>Media query — the mobile layout</h3>
+        <p>A <strong>media query</strong> is a conditional CSS rule: "only apply these styles when the screen is 640px wide or narrower." Inside it, the layout switches from side-by-side to stacked (<code>flex-direction: column</code>), the sidebar stretches to full width, and sticky positioning is turned off so everything scrolls normally. This is how one HTML file can look great on both a desktop and a phone.</p>
+        <span class="analogy">like an if statement: "if the screen is small, use these rules instead."</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HTML STRUCTURE ── -->
+  <div class="group">
+    <div class="group-label">The HTML structure — what visitors see</div>
+
+    <div class="card">
+      <div class="card-code">&lt;aside class="sidebar"&gt; ... &lt;/aside&gt;</div>
+      <div class="card-body">
+        <h3>The sidebar element</h3>
+        <p><code>aside</code> is an HTML tag for content that sits beside the main content — a sidebar. The <code>class="sidebar"</code> connects this element to the <code>.sidebar</code> CSS rules you wrote above. Every HTML tag can have a class, and every CSS rule that starts with a dot targets elements with that class name.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;div class="avatar"&gt;🧑‍💻&lt;/div&gt;</div>
+      <div class="card-body">
+        <h3>The avatar placeholder</h3>
+        <p><code>div</code> is a generic container — a box with no built-in meaning, used to group and style things. The emoji inside it is just a placeholder. When you're ready, you'll replace this whole line with an <code>&lt;img&gt;</code> tag pointing to your photo — see Step B in the workshop guide.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;nav class="tabs"&gt;
+  &lt;a href="#about"&gt;About&lt;/a&gt;
+  ...
+&lt;/nav&gt;</div>
+      <div class="card-body">
+        <h3>The tab navigation</h3>
+        <p><code>nav</code> is the HTML tag for a navigation menu. Each <code>&lt;a href="#about"&gt;</code> is an anchor link — the <code>#</code> means "scroll to the element on this page with <code>id="about"</code>." No new page loads, the browser just jumps to that section. This is the simplest kind of navigation you can build.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;div class="section" id="about"&gt;</div>
+      <div class="card-body">
+        <h3>Section with an ID</h3>
+        <p>The <code>id="about"</code> is the anchor target — it's what the tab link <code>href="#about"</code> points to. IDs must be unique on a page (no two elements can share the same ID). The <code>class="section"</code> applies the shared section styles (padding, scroll margin etc.) to all four content sections.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;span class="news-date"&gt;Mar 2026&lt;/span&gt;</div>
+      <div class="card-body">
+        <h3>Span — inline styling</h3>
+        <p><code>span</code> is like <code>div</code> but inline — it wraps a piece of text within a line without breaking onto a new line. Here it wraps the date so the <code>.news-date</code> CSS rules (grey colour, fixed width) apply to just the date, leaving the news text beside it unstyled.</p>
+        <span class="analogy">highlighting one word in a sentence with a yellow marker — same line, different style.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-code">&lt;strong&gt;&lt;a href="#"&gt;Project One Title&lt;/a&gt;&lt;/strong&gt;</div>
+      <div class="card-body">
+        <h3>Nested tags</h3>
+        <p>Tags can be nested inside each other. Here a link (<code>a</code>) sits inside a bold tag (<code>strong</code>), making the project title both bold and clickable. The <code>href="#"</code> is a placeholder — replace the <code>#</code> with the actual URL of your project when you have one.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>← <a href="index.html">Back to workshop guide</a> &nbsp;·&nbsp; <a href="template.html" target="_blank">View the live demo portfolio</a></p>
+</footer>
+
+</body>
+</html>

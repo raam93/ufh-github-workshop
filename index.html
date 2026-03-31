@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Build Free Portfolios on GitHub — Workshop Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --ink2: #3a3a3a;
+    --muted: #6b6b6b;
+    --rule: #e0ddd8;
+    --bg: #f9f7f4;
+    --card: #ffffff;
+    --accent: #1a4fff;
+    --accent-light: #eef2ff;
+    --green: #0d7a4e;
+    --green-light: #e6f5ee;
+    --amber: #b45309;
+    --amber-light: #fef3c7;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', 'Courier New', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding: 56px 0 48px;
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: #eef2ff;
+    z-index: 0;
+  }
+  .inner { max-width: 760px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: 99px;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .tagline { font-size: 1.05rem; color: var(--ink2); max-width: 540px; line-height: 1.65; margin-bottom: 28px; }
+
+  /* demo link card */
+  .demo-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #0f172a;
+    color: #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 18px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background .15s;
+  }
+  .demo-card:hover { background: #1e293b; }
+  .demo-card strong { color: #fff; }
+  .demo-card span { color: #64748b; font-family: var(--mono); font-size: 12px; }
+
+  .meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 24px; }
+  .meta-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); font-family: var(--mono); }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--card);
+    border-bottom: 1px solid var(--rule);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-inner {
+    max-width: 760px; margin: 0 auto; padding: 0 28px;
+    display: flex; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  nav a {
+    display: inline-block; padding: 12px 14px;
+    font-size: 13px; font-weight: 500; color: var(--muted);
+    text-decoration: none; white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ── MAIN ── */
+  main { max-width: 760px; margin: 0 auto; padding: 0 28px 80px; }
+  section { padding-top: 56px; }
+  .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+  h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; line-height: 1.2; margin-bottom: 20px; }
+  p { color: var(--ink2); margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+  a { color: var(--accent); }
+
+  /* ── TIMELINE ── */
+  .tl-item {
+    position: relative; padding-bottom: 8px; padding-left: 32px;
+  }
+  .tl-item:not(:last-child)::after {
+    content: ''; position: absolute; left: 5px; top: 44px; bottom: 0;
+    width: 1px; background: var(--rule);
+  }
+  .tl-dot { position: absolute; left: 0; top: 16px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--accent); }
+  .tl-card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 18px; margin-bottom: 12px; }
+  .tl-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 3px; }
+  .tl-card p  { font-size: 13.5px; margin-bottom: 0; }
+  .dot-purple { background:#534AB7; box-shadow:0 0 0 1px #534AB7; }
+  .dot-teal   { background:#0F6E56; box-shadow:0 0 0 1px #0F6E56; }
+  .dot-blue   { background:#185FA5; box-shadow:0 0 0 1px #185FA5; }
+  .dot-amber  { background:#BA7517; box-shadow:0 0 0 1px #BA7517; }
+  .dot-green  { background:#3B6D11; box-shadow:0 0 0 1px #3B6D11; }
+  .dot-coral  { background:#993C1D; box-shadow:0 0 0 1px #993C1D; }
+
+  /* ── STEPS ── */
+  .step { display: grid; grid-template-columns: 36px 1fr; gap: 0 16px; margin-bottom: 20px; align-items: start; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--ink); color: #fff;
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-num.letter { background: var(--muted); }
+  .step-body h4 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .step-body p  { font-size: 14px; margin-bottom: 8px; }
+  .step-body p:last-child { margin-bottom: 0; }
+
+  /* ── CODE ── */
+  .code-wrap { background: #0f0f0f; border-radius: 10px; overflow: hidden; margin: 16px 0; }
+  .code-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #2a2a2a; }
+  .code-label { font-family: var(--mono); font-size: 11px; color: #888; letter-spacing: .05em; }
+  .copy-btn {
+    font-family: var(--mono); font-size: 11px; background: #2a2a2a; color: #ccc;
+    border: none; border-radius: 5px; padding: 4px 10px; cursor: pointer; transition: background .15s, color .15s;
+  }
+  .copy-btn:hover { background: var(--accent); color: #fff; }
+  .copy-btn.copied { background: var(--green); color: #fff; }
+  pre { padding: 18px 18px 20px; overflow-x: auto; font-family: var(--mono); font-size: 13px; line-height: 1.65; color: #d4d4d4; margin: 0; }
+  code { font-family: var(--mono); font-size: 13px; background: #f0eee9; color: var(--ink); padding: 1px 6px; border-radius: 4px; }
+
+  /* ── CALLOUTS ── */
+  .callout { border-radius: 10px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+  .callout.tip  { background: var(--accent-light); border-left: 3px solid var(--accent); }
+  .callout.warn { background: var(--amber-light);  border-left: 3px solid var(--amber); }
+  .callout.go   { background: var(--green-light);  border-left: 3px solid var(--green); }
+  .callout-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+  .callout p    { font-size: 14px; margin: 0; }
+  .callout strong { color: var(--ink); }
+
+  /* ── RESOURCES ── */
+  .resource-grid { display: grid; gap: 10px; margin-top: 12px; }
+  .resource-row {
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 8px;
+    padding: 12px 16px; text-decoration: none; transition: border-color .15s, box-shadow .15s;
+  }
+  .resource-row:hover { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+  .resource-row h4  { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+  .resource-row p   { font-size: 12.5px; color: var(--muted); margin: 0; font-family: var(--mono); }
+  .resource-arrow   { font-size: 18px; color: var(--accent); flex-shrink: 0; }
+
+  hr.divider { border: none; border-top: 1px solid var(--rule); margin: 40px 0 0; }
+
+  footer { border-top: 1px solid var(--rule); padding: 36px 28px; text-align: center; font-size: 13px; color: var(--muted); max-width: 760px; margin: 0 auto; }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 540px) {
+    h1 { font-size: 1.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <div class="pill">Workshop · March 31 · 5:30 – 7:00 pm</div>
+    <h1>Build a <em>free</em> professional<br/>portfolio on GitHub</h1>
+    <p class="tagline">No coding required. By the end of this session you'll have a permanent, live website at <strong>yourusername.github.io</strong> — ready to share on LinkedIn tonight.</p>
+
+    <a class="demo-card" href="template.html" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="#64748b"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
+      <div>
+        <strong>See what you'll build →</strong>
+        <span>Live demo · opens in new tab</span>
+      </div>
+    </a>
+
+    <div class="meta">
+      <span class="meta-item">⏱ 90 minutes</span>
+      <span class="meta-item">💻 No code needed</span>
+      <span class="meta-item">🆓 Free forever</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#agenda">Agenda</a>
+    <a href="#before">Before you start</a>
+    <a href="#repo">1. Create repo</a>
+    <a href="#page">2. Build your page</a>
+    <a href="#golive">3. Go live</a>
+    <a href="#customize">4. Go further</a>
+    <a href="#resources">Resources</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- AGENDA -->
+  <section id="agenda">
+    <div class="section-label">Overview</div>
+    <h2>Tonight's agenda</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot dot-purple"></div>
+        <div class="tl-card"><h3>Welcome &amp; setup</h3><p>Connect to WiFi, create a GitHub account if needed, open this page on your device.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-teal"></div>
+        <div class="tl-card"><h3>Why GitHub Pages?</h3><p>See a finished example, compare to paid tools, understand what you're building and why it matters.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-blue"></div>
+        <div class="tl-card"><h3>Create your repository</h3><p>Set up the specially-named repo that activates your free website automatically.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-amber"></div>
+        <div class="tl-card"><h3>Build your page</h3><p>Paste and edit the starter template — add your name, bio, projects, and links.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-green"></div>
+        <div class="tl-card"><h3>Go live!</h3><p>Flip one setting and watch your site deploy. Share your URL with the room.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-coral"></div>
+        <div class="tl-card"><h3>Customize &amp; Q&amp;A</h3><p>Add a theme, photo, or extra sections. Open floor for questions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- BEFORE -->
+  <section id="before">
+    <div class="section-label">Setup</div>
+    <h2>Before you start</h2>
+    <p>You need two things — both free, both take under 2 minutes.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>A GitHub account</h4>
+        <p>Go to <a href="https://github.com/signup" target="_blank"><strong>github.com/signup</strong></a> and sign up. <strong>Pick your username carefully</strong> — it becomes your website address (<code>yourusername.github.io</code>). Use your name or initials. Keep it professional.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Any web browser</h4>
+        <p>Chrome, Firefox, Safari, or Edge all work. No downloads or installs needed tonight.</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-icon">💡</span>
+      <p><strong>Already have GitHub?</strong> Jump straight to <a href="#repo">Step 1</a>.</p>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- STEP 1 -->
+  <section id="repo">
+    <div class="section-label">Step 1</div>
+    <h2>Create your repository</h2>
+    <p>GitHub has one magic rule: name a repository <code>yourusername.github.io</code> and it automatically becomes a live public website. That's the entire trick.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Start a new repository</h4>
+        <p>Click the <strong>+</strong> button in the top-right corner of GitHub → <strong>New repository</strong>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Name it exactly right</h4>
+        <p>In the "Repository name" field, type <code>yourusername.github.io</code> — swapping in your actual GitHub username. Capitalisation and spelling must match exactly.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Set to Public and add a README</h4>
+        <p>Make sure <strong>Public</strong> is selected. Check <strong>"Add a README file"</strong>. Click <strong>Create repository</strong>.</p>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <span class="callout-icon">⚠️</span>
+      <p><strong>Most common mistake:</strong> the name doesn't match the username exactly. Double-check before clicking Create — a typo means no website.</p>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- STEP 2 -->
+  <section id="page">
+    <div class="section-label">Step 2</div>
+    <h2>Build your page</h2>
+    <p>You'll create one file called <code>index.html</code> — the front door of your site. Everything happens right in the browser; nothing to install.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Create index.html</h4>
+        <p>Inside your new repo, click <strong>Add file → Create new file</strong>. Type <code>index.html</code> as the filename.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Copy the starter template below</h4>
+        <p>Click <strong>Copy</strong>, then paste the whole thing into the GitHub editor. Then replace the placeholder text with your own info.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Commit the file</h4>
+        <p>Scroll to the bottom → click <strong>Commit changes</strong>. Your file is saved.</p>
+      </div>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-header">
+        <span class="code-label">index.html — paste this into GitHub</span>
+        <button class="copy-btn" onclick="copyCode(this, 'starter')">Copy</button>
+      </div>
+<pre id="starter">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
+  &lt;title&gt;Your Name | Portfolio&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: Georgia, serif;
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 0 20px;
+      color: #222;
+      line-height: 1.7;
+    }
+    h1 { font-size: 2em; margin-bottom: 4px; }
+    h2 { font-size: 1.1em; color: #555;
+         font-weight: normal; margin-top: 0; }
+    a  { color: #0070f3; }
+    section { margin-top: 40px; }
+    ul { padding-left: 20px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;Your Full Name&lt;/h1&gt;
+  &lt;h2&gt;Your Role or Degree — Your Institution&lt;/h2&gt;
+
+  &lt;section&gt;
+    &lt;h3&gt;About Me&lt;/h3&gt;
+    &lt;p&gt;Write 2–3 sentences about yourself,
+       your field, and what you are working on.&lt;/p&gt;
+  &lt;/section&gt;
+
+  &lt;section&gt;
+    &lt;h3&gt;Projects&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;strong&gt;Project Name&lt;/strong&gt; —
+        One sentence description.
+        &lt;a href="#"&gt;Link&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;strong&gt;Project Name&lt;/strong&gt; —
+        One sentence description.
+        &lt;a href="#"&gt;Link&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+
+  &lt;section&gt;
+    &lt;h3&gt;Contact&lt;/h3&gt;
+    &lt;p&gt;
+      &lt;a href="mailto:you@email.com"&gt;you@email.com&lt;/a&gt; ·
+      &lt;a href="https://linkedin.com/in/yourprofile"&gt;LinkedIn&lt;/a&gt; ·
+      &lt;a href="https://github.com/yourusername"&gt;GitHub&lt;/a&gt;
+    &lt;/p&gt;
+  &lt;/section&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-icon">✏️</span>
+      <p><strong>What to change:</strong> Replace <em>Your Full Name</em>, the subtitle line, the About Me paragraph, the two project entries, and your contact links. Leave the HTML tags (<code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;section&gt;</code> etc.) exactly as they are.</p>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-icon">👁</span>
+      <p><strong>Want to see what a finished version looks like?</strong> Open the <a href="template.html" target="_blank">live demo →</a> in a new tab.</p>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- STEP 3 -->
+  <section id="golive">
+    <div class="section-label">Step 3</div>
+    <h2>Go live</h2>
+    <p>One setting, one click, and your site is on the internet.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Open Settings</h4>
+        <p>In your repository, click the <strong>Settings</strong> tab along the top.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Click Pages</h4>
+        <p>In the left sidebar, scroll to <strong>Pages</strong> and click it.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Set branch to main → Save</h4>
+        <p>Under "Branch", choose <strong>main</strong> from the dropdown → click <strong>Save</strong>. GitHub shows a banner with your URL.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Wait ~60 seconds</h4>
+        <p>Open the <strong>Actions</strong> tab in your repo. A yellow circle = building. A green checkmark = live. Then visit <code>https://yourusername.github.io</code>.</p>
+      </div>
+    </div>
+
+    <div class="callout go">
+      <span class="callout-icon">🚀</span>
+      <p><strong>You're live.</strong> Copy your URL and share it in the room — then add it to your LinkedIn profile under "Website" before you leave tonight.</p>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- STEP 4 -->
+  <section id="customize">
+    <div class="section-label">Step 4 — optional</div>
+    <h2>Go further</h2>
+
+    <div class="step">
+      <div class="step-num letter">A</div>
+      <div class="step-body">
+        <h4>Add a Jekyll theme</h4>
+        <p>Go to <strong>Settings → Pages → Choose a theme</strong>. Pick any theme and click "Select theme". GitHub automatically redeploys with the new design — no code touched.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num letter">B</div>
+      <div class="step-body">
+        <h4>Add a profile photo</h4>
+        <p>Drag an image into your repo's file list to upload it. Then add this inside the <code>&lt;body&gt;</code> of your <code>index.html</code>:</p>
+        <div class="code-wrap">
+          <div class="code-header">
+            <span class="code-label">HTML snippet</span>
+            <button class="copy-btn" onclick="copyCode(this, 'photo')">Copy</button>
+          </div>
+<pre id="photo">&lt;img src="photo.jpg" width="120"
+     style="border-radius:50%; margin-bottom:16px;"
+     alt="Your Name"/&gt;</pre>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num letter">C</div>
+      <div class="step-body">
+        <h4>Add more sections</h4>
+        <p>Copy any <code>&lt;section&gt;...&lt;/section&gt;</code> block and paste it below the last one. Change the <code>&lt;h3&gt;</code> to "Education", "Skills", "Publications", or whatever fits you.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num letter">D</div>
+      <div class="step-body">
+        <h4>Updating is always this easy</h4>
+        <p>Edit any file in GitHub → Commit changes → your site updates within a minute. No re-publishing, no logins to a separate platform, no fees.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- RESOURCES -->
+  <section id="resources">
+    <div class="section-label">Links</div>
+    <h2>Resources to keep</h2>
+    <div class="resource-grid">
+      <a class="resource-row" href="template.html" target="_blank">
+        <div><h4>Live demo portfolio</h4><p>See what a finished version looks like</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://github.com/signup" target="_blank" rel="noopener">
+        <div><h4>Create a GitHub account</h4><p>github.com/signup</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://pages.github.com" target="_blank" rel="noopener">
+        <div><h4>GitHub Pages docs</h4><p>pages.github.com</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="http://jekyllthemes.org" target="_blank" rel="noopener">
+        <div><h4>Free Jekyll themes</h4><p>jekyllthemes.org</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="noopener">
+        <div><h4>Markdown cheat sheet</h4><p>markdownguide.org/cheat-sheet</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://education.github.com/pack" target="_blank" rel="noopener">
+        <div><h4>GitHub Student Developer Pack</h4><p>Free extras for students — education.github.com/pack</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Workshop guide · Hosted on GitHub Pages · <a href="template.html">View demo portfolio →</a></p>
+</footer>
+
+<script>
+function copyCode(btn, id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>

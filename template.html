@@ -59,7 +59,6 @@
     .sidebar-links li { margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
     .sidebar-links li::before { content: "→"; color: #aaa; }
     .main { flex: 1; padding: 0 40px 80px; }
-    /* ── Tabs ── */
     .tabs {
       display: flex;
       justify-content: center;
@@ -70,7 +69,6 @@
       background: #fff;
       z-index: 10;
       border-bottom: 1px solid #f0f0f0;
-      margin-bottom: 0;
     }
     .tabs a {
       padding: 6px 18px;
@@ -81,10 +79,7 @@
       border-radius: 99px;
       transition: background 0.15s, color 0.15s;
     }
-    .tabs a:hover {
-      color: #2563eb;
-      background: #eff6ff;
-    }
+    .tabs a:hover { color: #2563eb; background: #eff6ff; }
     .section {
       margin-bottom: 40px;
       padding-top: 40px;
@@ -99,7 +94,7 @@
     .project-list li strong { display: block; margin-bottom: 2px; font-size: 1rem; }
     @media (max-width: 640px) {
       .wrapper { flex-direction: column; }
-      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e5e5e5; padding: 32px 24px; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e5e5e5; padding: 32px 24px; height: auto; position: static; }
       .main { padding: 32px 24px; }
     }
   </style>
@@ -134,14 +129,10 @@
 
     <div class="section" id="about">
       <h2>About</h2>
-      <p>
-        Write a short introduction here — who you are, what you study or work on,
-        and what you're passionate about. Two or three sentences is plenty.
-      </p>
-      <p>
-        You can add a second paragraph for more detail — your research interests,
-        industry experience, or what you're looking for next.
-      </p>
+      <p>Write a short introduction here — who you are, what you study or work on,
+      and what you're passionate about. Two or three sentences is plenty.</p>
+      <p>You can add a second paragraph for more detail — your research interests,
+      industry experience, or what you're looking for next.</p>
     </div>
 
     <div class="section" id="news">

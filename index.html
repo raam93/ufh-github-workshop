@@ -259,7 +259,7 @@
     <div class="timeline">
       <div class="tl-item">
         <div class="tl-dot dot-purple"></div>
-        <div class="tl-card"><h3>Welcome &amp; setup</h3><p>Connect to WiFi, create a GitHub account if needed, open this page on your device.</p></div>
+        <div class="tl-card"><h3>Setup</h3><p>Connect to WiFi, create a GitHub account if needed, open this page on your device.</p></div>
       </div>
       <div class="tl-item">
         <div class="tl-dot dot-blue"></div>
@@ -646,17 +646,25 @@
     <div class="step">
       <div class="step-num letter">B</div>
       <div class="step-body">
-        <h4>Add a profile photo</h4>
-        <p>Drag an image into your repo's file list to upload it. Then add this inside the <code>&lt;body&gt;</code> of your <code>index.html</code>:</p>
+        <h4>Replace the emoji with your own photo</h4>
+        <p>The template starts with an emoji as a placeholder. Here's how to swap it for a real photo — two steps.</p>
+        <p><strong>Step 1 — Upload your photo to GitHub.</strong> In your repo, click <strong>Add file → Upload files</strong>, choose your image, and upload it. Keep the filename short and simple with no spaces — e.g. <code>photo.jpg</code>. Click <strong>Commit changes</strong>.</p>
+        <p><strong>Step 2 — Update index.html.</strong> Open your <code>index.html</code>, find this line:</p>
         <div class="code-wrap">
           <div class="code-header">
-            <span class="code-label">HTML snippet</span>
+            <span class="code-label">Find this line in your index.html</span>
+          </div>
+<pre>&lt;div class="avatar"&gt;🧑‍💻&lt;/div&gt;</pre>
+        </div>
+        <p style="margin-top: 8px">Replace the entire line with:</p>
+        <div class="code-wrap">
+          <div class="code-header">
+            <span class="code-label">Replace it with this</span>
             <button class="copy-btn" onclick="copyCode(this, 'photo')">Copy</button>
           </div>
-<pre id="photo">&lt;img src="photo.jpg" width="120"
-     style="border-radius:50%; margin-bottom:16px;"
-     alt="Your Name"/&gt;</pre>
+<pre id="photo">&lt;img src="photo.jpg" class="avatar" alt="Your Name"/&gt;</pre>
         </div>
+        <p style="margin-top: 8px">The <code>class="avatar"</code> keeps the circular crop. The <code>src="photo.jpg"</code> must exactly match the filename you uploaded — spelling, capitalization, and file extension (<code>.jpg</code> vs <code>.png</code>) all matter.</p>
       </div>
     </div>
     <div class="step">

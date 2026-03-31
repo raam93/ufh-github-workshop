@@ -37,6 +37,10 @@
       padding: 48px 28px 48px 32px;
       border-right: 1px solid #e5e5e5;
       text-align: center;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
     }
     .avatar {
       width: 140px;
@@ -58,27 +62,34 @@
     /* ── Tabs ── */
     .tabs {
       display: flex;
-      gap: 4px;
-      border-bottom: 2px solid #e5e5e5;
-      margin-bottom: 36px;
-      padding-top: 32px;
+      justify-content: center;
+      gap: 6px;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+      border-bottom: 1px solid #f0f0f0;
+      margin-bottom: 0;
     }
     .tabs a {
-      padding: 8px 16px;
+      padding: 6px 18px;
       font-size: 0.85rem;
       font-family: Arial, sans-serif;
       color: #666;
       text-decoration: none;
-      border-radius: 4px 4px 0 0;
-      border: 1px solid transparent;
-      border-bottom: none;
-      margin-bottom: -2px;
+      border-radius: 99px;
+      transition: background 0.15s, color 0.15s;
     }
     .tabs a:hover {
       color: #2563eb;
-      background: #f5f5f5;
+      background: #eff6ff;
     }
-    .section { margin-bottom: 40px; }
+    .section {
+      margin-bottom: 40px;
+      padding-top: 40px;
+      scroll-margin-top: 60px;
+    }
     .section p { margin-bottom: 12px; }
     .news-list { list-style: none; }
     .news-list li { display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
@@ -94,9 +105,9 @@
   </style>
 </head>
 <body>
-
+ 
 <div class="wrapper">
-
+ 
   <aside class="sidebar">
     <div class="avatar">🧑‍💻</div>
     <h1>Your Full Name</h1>
@@ -111,16 +122,16 @@
       <li><a href="https://github.com/yourusername">GitHub</a></li>
     </ul>
   </aside>
-
+ 
   <main class="main">
-
+ 
     <nav class="tabs">
       <a href="#about">About</a>
       <a href="#news">News</a>
       <a href="#projects">Projects</a>
       <a href="#education">Education</a>
     </nav>
-
+ 
     <div class="section" id="about">
       <h2>About</h2>
       <p>
@@ -132,7 +143,7 @@
         industry experience, or what you're looking for next.
       </p>
     </div>
-
+ 
     <div class="section" id="news">
       <h2>News</h2>
       <ul class="news-list">
@@ -150,7 +161,7 @@
         </li>
       </ul>
     </div>
-
+ 
     <div class="section" id="projects">
       <h2>Projects</h2>
       <ul class="project-list">
@@ -168,7 +179,7 @@
         </li>
       </ul>
     </div>
-
+ 
     <div class="section" id="education">
       <h2>Education</h2>
       <ul class="project-list">
@@ -182,26 +193,9 @@
         </li>
       </ul>
     </div>
-
+ 
   </main>
-
+ 
 </div>
-
+ 
 </body>
-<script>
-  const sections = document.querySelectorAll('.section');
-  const tabs = document.querySelectorAll('.tabs a');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 60) current = s.id;
-    });
-    tabs.forEach(a => {
-      const active = a.getAttribute('href') === '#' + current;
-      a.style.color = active ? '#2563eb' : '#666';
-      a.style.borderBottom = active ? '2px solid #2563eb' : '';
-    });
-  });
-</script>
-</html>

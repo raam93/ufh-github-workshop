@@ -206,8 +206,9 @@
 
 <header>
   <div class="inner">
+    <div class="pill">Workshop · March 31 · 5:30 – 7:00 pm</div>
     <h1>Build a <em>free</em> professional<br/>portfolio on GitHub</h1>
-    <p class="tagline">No coding required. By the end of this session you'll have a permanent, live website at <strong>yourusername.github.io</strong></p>
+    <p class="tagline">By the end of this session, you'll have a permanent, live website at <strong>yourusername.github.io</strong>.</p>
 
     <a class="demo-card" href="template.html" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="#64748b"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
@@ -219,6 +220,7 @@
 
     <div class="meta">
       <span class="meta-item">⏱ 90 minutes</span>
+      <span class="meta-item">💻 No coding experience needed</span>
       <span class="meta-item">🆓 Free forever</span>
     </div>
   </div>
@@ -282,7 +284,7 @@
       <div class="step-num">1</div>
       <div class="step-body">
         <h4>A GitHub account</h4>
-        <p>Go to <a href="https://github.com/signup" target="_blank"><strong>github.com/signup</strong></a> and sign up. <strong>Pick your username carefully</strong> — it becomes your website address (<code>yourusername.github.io</code>). Use your name or initials. Keep it professional. But don't worry, you can buy a new domain with a different name later.</p>
+        <p>Go to <a href="https://github.com/signup" target="_blank"><strong>github.com/signup</strong></a> and sign up. <strong>Pick your username carefully</strong> — it becomes your website address (<code>yourusername.github.io</code>). Use your name or initials. Keep it professional.</p>
       </div>
     </div>
     <div class="step">
@@ -318,7 +320,7 @@
       <div class="step-num">2</div>
       <div class="step-body">
         <h4>Name it exactly right</h4>
-        <p>In the "Repository name" field, type <code>yourusername.github.io</code> — swapping in your actual GitHub username. Capitalization and spelling must match exactly.</p>
+        <p>In the "Repository name" field, type <code>yourusername.github.io</code> — swapping in your actual GitHub username. Capitalisation and spelling must match exactly.</p>
       </div>
     </div>
     <div class="step">
@@ -378,20 +380,85 @@
   &lt;title&gt;Your Name&lt;/title&gt;
   &lt;style&gt;
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Georgia, serif; font-size: 16px; line-height: 1.7; color: #222; background: #fff; }
+    body {
+      font-family: Georgia, serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #222;
+      background: #fff;
+    }
     a { color: #2563eb; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    h2 { font-size: 1rem; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; color: #555; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #e5e5e5; }
-    .wrapper { display: flex; min-height: 100vh; max-width: 960px; margin: 0 auto; }
-    .sidebar { width: 240px; flex-shrink: 0; padding: 48px 28px 48px 32px; border-right: 1px solid #e5e5e5; text-align: center; }
-    .avatar { width: 140px; height: 140px; border-radius: 50%; background: #dbeafe; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 60px; }
+    h2 {
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .wrapper {
+      display: flex;
+      min-height: 100vh;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      padding: 48px 28px 48px 32px;
+      border-right: 1px solid #e5e5e5;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #dbeafe;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+    }
     .sidebar h1 { font-size: 1.2rem; font-weight: bold; margin-bottom: 4px; }
     .sidebar .role { font-size: 0.85rem; color: #666; line-height: 1.5; margin-bottom: 20px; }
     .sidebar-links { list-style: none; font-size: 0.85rem; text-align: left; }
     .sidebar-links li { margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
     .sidebar-links li::before { content: "→"; color: #aaa; }
-    .main { flex: 1; padding: 48px 40px 80px; }
-    .section { margin-bottom: 40px; }
+    .main { flex: 1; padding: 0 40px 80px; }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .tabs a {
+      padding: 6px 18px;
+      font-size: 0.85rem;
+      font-family: Arial, sans-serif;
+      color: #666;
+      text-decoration: none;
+      border-radius: 99px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .tabs a:hover { color: #2563eb; background: #eff6ff; }
+    .section {
+      margin-bottom: 40px;
+      padding-top: 40px;
+      scroll-margin-top: 60px;
+    }
     .section p { margin-bottom: 12px; }
     .news-list { list-style: none; }
     .news-list li { display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
@@ -401,7 +468,7 @@
     .project-list li strong { display: block; margin-bottom: 2px; font-size: 1rem; }
     @media (max-width: 640px) {
       .wrapper { flex-direction: column; }
-      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e5e5e5; padding: 32px 24px; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e5e5e5; padding: 32px 24px; height: auto; position: static; }
       .main { padding: 32px 24px; }
     }
   &lt;/style&gt;
@@ -427,7 +494,14 @@
 
   &lt;main class="main"&gt;
 
-    &lt;div class="section"&gt;
+    &lt;nav class="tabs"&gt;
+      &lt;a href="#about"&gt;About&lt;/a&gt;
+      &lt;a href="#news"&gt;News&lt;/a&gt;
+      &lt;a href="#projects"&gt;Projects&lt;/a&gt;
+      &lt;a href="#education"&gt;Education&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;div class="section" id="about"&gt;
       &lt;h2&gt;About&lt;/h2&gt;
       &lt;p&gt;Write a short introduction here — who you are, what you study or work on,
       and what you're passionate about. Two or three sentences is plenty.&lt;/p&gt;
@@ -435,7 +509,7 @@
       industry experience, or what you're looking for next.&lt;/p&gt;
     &lt;/div&gt;
 
-    &lt;div class="section"&gt;
+    &lt;div class="section" id="news"&gt;
       &lt;h2&gt;News&lt;/h2&gt;
       &lt;ul class="news-list"&gt;
         &lt;li&gt;
@@ -453,7 +527,7 @@
       &lt;/ul&gt;
     &lt;/div&gt;
 
-    &lt;div class="section"&gt;
+    &lt;div class="section" id="projects"&gt;
       &lt;h2&gt;Projects&lt;/h2&gt;
       &lt;ul class="project-list"&gt;
         &lt;li&gt;
@@ -471,7 +545,7 @@
       &lt;/ul&gt;
     &lt;/div&gt;
 
-    &lt;div class="section"&gt;
+    &lt;div class="section" id="education"&gt;
       &lt;h2&gt;Education&lt;/h2&gt;
       &lt;ul class="project-list"&gt;
         &lt;li&gt;
@@ -543,7 +617,7 @@
 
     <div class="callout go">
       <span class="callout-icon">🚀</span>
-      <p><strong>You're live.</strong> Copy your URL and share it in the room!.</p>
+      <p><strong>You're live.</strong> Copy your URL and share it in the room!</p>
     </div>
   </section>
 

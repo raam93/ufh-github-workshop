@@ -206,7 +206,6 @@
 
 <header>
   <div class="inner">
-    <div class="pill">March 31 · 5:30 – 7:00 pm</div>
     <h1>Build a <em>free</em> professional<br/>portfolio on GitHub</h1>
     <p class="tagline">No coding required. By the end of this session you'll have a permanent, live website at <strong>yourusername.github.io</strong></p>
 
@@ -218,6 +217,10 @@
       </div>
     </a>
 
+    <div class="meta">
+      <span class="meta-item">⏱ 90 minutes</span>
+      <span class="meta-item">🆓 Free forever</span>
+    </div>
   </div>
 </header>
 
@@ -258,7 +261,7 @@
       </div>
       <div class="tl-item">
         <div class="tl-dot dot-green"></div>
-        <div class="tl-card"><h3>Go live!</h3><p>Flip one setting and watch your site deploy.</p></div>
+        <div class="tl-card"><h3>Go live!</h3><p>Flip one setting and watch your site deploy. Share your URL with the room.</p></div>
       </div>
       <div class="tl-item">
         <div class="tl-dot dot-coral"></div>
@@ -279,7 +282,7 @@
       <div class="step-num">1</div>
       <div class="step-body">
         <h4>A GitHub account</h4>
-        <p>Go to <a href="https://github.com/signup" target="_blank"><strong>github.com/signup</strong></a> and sign up. <strong>Pick your username carefully</strong> — it becomes your website address (<code>yourusername.github.io</code>). Use your name or initials. Keep it professional. But don't worry, you can buy a new domain with a different name. </p>
+        <p>Go to <a href="https://github.com/signup" target="_blank"><strong>github.com/signup</strong></a> and sign up. <strong>Pick your username carefully</strong> — it becomes your website address (<code>yourusername.github.io</code>). Use your name or initials. Keep it professional. But don't worry, you can buy a new domain with a different name later.</p>
       </div>
     </div>
     <div class="step">
@@ -315,7 +318,7 @@
       <div class="step-num">2</div>
       <div class="step-body">
         <h4>Name it exactly right</h4>
-        <p>In the "Repository name" field, type <code>yourusername.github.io</code> — swapping in your actual GitHub username. Capitalisation and spelling must match exactly.</p>
+        <p>In the "Repository name" field, type <code>yourusername.github.io</code> — swapping in your actual GitHub username. Capitalization and spelling must match exactly.</p>
       </div>
     </div>
     <div class="step">
@@ -372,59 +375,119 @@
 &lt;head&gt;
   &lt;meta charset="UTF-8" /&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
-  &lt;title&gt;Your Name | Portfolio&lt;/title&gt;
+  &lt;title&gt;Your Name&lt;/title&gt;
   &lt;style&gt;
-    body {
-      font-family: Georgia, serif;
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 0 20px;
-      color: #222;
-      line-height: 1.7;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; font-size: 16px; line-height: 1.7; color: #222; background: #fff; }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h2 { font-size: 1rem; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; color: #555; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #e5e5e5; }
+    .wrapper { display: flex; min-height: 100vh; max-width: 960px; margin: 0 auto; }
+    .sidebar { width: 240px; flex-shrink: 0; padding: 48px 28px 48px 32px; border-right: 1px solid #e5e5e5; text-align: center; }
+    .avatar { width: 140px; height: 140px; border-radius: 50%; background: #dbeafe; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 60px; }
+    .sidebar h1 { font-size: 1.2rem; font-weight: bold; margin-bottom: 4px; }
+    .sidebar .role { font-size: 0.85rem; color: #666; line-height: 1.5; margin-bottom: 20px; }
+    .sidebar-links { list-style: none; font-size: 0.85rem; text-align: left; }
+    .sidebar-links li { margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .sidebar-links li::before { content: "→"; color: #aaa; }
+    .main { flex: 1; padding: 48px 40px 80px; }
+    .section { margin-bottom: 40px; }
+    .section p { margin-bottom: 12px; }
+    .news-list { list-style: none; }
+    .news-list li { display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+    .news-date { color: #888; white-space: nowrap; width: 90px; flex-shrink: 0; }
+    .project-list { list-style: none; }
+    .project-list li { padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+    .project-list li strong { display: block; margin-bottom: 2px; font-size: 1rem; }
+    @media (max-width: 640px) {
+      .wrapper { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e5e5e5; padding: 32px 24px; }
+      .main { padding: 32px 24px; }
     }
-    h1 { font-size: 2em; margin-bottom: 4px; }
-    h2 { font-size: 1.1em; color: #555;
-         font-weight: normal; margin-top: 0; }
-    a  { color: #0070f3; }
-    section { margin-top: 40px; }
-    ul { padding-left: 20px; }
   &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 
-  &lt;h1&gt;Your Full Name&lt;/h1&gt;
-  &lt;h2&gt;Your Role or Degree — Your Institution&lt;/h2&gt;
+&lt;div class="wrapper"&gt;
 
-  &lt;section&gt;
-    &lt;h3&gt;About Me&lt;/h3&gt;
-    &lt;p&gt;Write 2–3 sentences about yourself,
-       your field, and what you are working on.&lt;/p&gt;
-  &lt;/section&gt;
-
-  &lt;section&gt;
-    &lt;h3&gt;Projects&lt;/h3&gt;
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;strong&gt;Project Name&lt;/strong&gt; —
-        One sentence description.
-        &lt;a href="#"&gt;Link&lt;/a&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;strong&gt;Project Name&lt;/strong&gt; —
-        One sentence description.
-        &lt;a href="#"&gt;Link&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/section&gt;
-
-  &lt;section&gt;
-    &lt;h3&gt;Contact&lt;/h3&gt;
-    &lt;p&gt;
-      &lt;a href="mailto:you@email.com"&gt;you@email.com&lt;/a&gt; ·
-      &lt;a href="https://linkedin.com/in/yourprofile"&gt;LinkedIn&lt;/a&gt; ·
-      &lt;a href="https://github.com/yourusername"&gt;GitHub&lt;/a&gt;
+  &lt;aside class="sidebar"&gt;
+    &lt;div class="avatar"&gt;🧑‍💻&lt;/div&gt;
+    &lt;h1&gt;Your Full Name&lt;/h1&gt;
+    &lt;p class="role"&gt;
+      MSc Student&lt;br/&gt;
+      Department of Something&lt;br/&gt;
+      University of Toronto
     &lt;/p&gt;
-  &lt;/section&gt;
+    &lt;ul class="sidebar-links"&gt;
+      &lt;li&gt;&lt;a href="mailto:you@mail.com"&gt;Email&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="https://linkedin.com/in/yourprofile"&gt;LinkedIn&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="https://github.com/yourusername"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/aside&gt;
+
+  &lt;main class="main"&gt;
+
+    &lt;div class="section"&gt;
+      &lt;h2&gt;About&lt;/h2&gt;
+      &lt;p&gt;Write a short introduction here — who you are, what you study or work on,
+      and what you're passionate about. Two or three sentences is plenty.&lt;/p&gt;
+      &lt;p&gt;You can add a second paragraph for more detail — your research interests,
+      industry experience, or what you're looking for next.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+      &lt;h2&gt;News&lt;/h2&gt;
+      &lt;ul class="news-list"&gt;
+        &lt;li&gt;
+          &lt;span class="news-date"&gt;Mar 2026&lt;/span&gt;
+          &lt;span&gt;Started my new role at Acme Corp as a research intern.&lt;/span&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;span class="news-date"&gt;Jan 2026&lt;/span&gt;
+          &lt;span&gt;Paper accepted at the Annual Conference on Something.&lt;/span&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;span class="news-date"&gt;Sep 2025&lt;/span&gt;
+          &lt;span&gt;Started my MSc program at the University of Toronto.&lt;/span&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+      &lt;h2&gt;Projects&lt;/h2&gt;
+      &lt;ul class="project-list"&gt;
+        &lt;li&gt;
+          &lt;strong&gt;&lt;a href="#"&gt;Project One Title&lt;/a&gt;&lt;/strong&gt;
+          A one-sentence description of what this project does or why it matters.
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;strong&gt;&lt;a href="#"&gt;Project Two Title&lt;/a&gt;&lt;/strong&gt;
+          A one-sentence description of what this project does or why it matters.
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;strong&gt;&lt;a href="#"&gt;Project Three Title&lt;/a&gt;&lt;/strong&gt;
+          A one-sentence description of what this project does or why it matters.
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="section"&gt;
+      &lt;h2&gt;Education&lt;/h2&gt;
+      &lt;ul class="project-list"&gt;
+        &lt;li&gt;
+          &lt;strong&gt;MSc, Your Field — University of Toronto&lt;/strong&gt;
+          2023 – present
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;strong&gt;BSc, Your Field — Your Undergrad University&lt;/strong&gt;
+          2019 – 2023
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+  &lt;/main&gt;
+
+&lt;/div&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</pre>
@@ -432,7 +495,7 @@
 
     <div class="callout tip">
       <span class="callout-icon">✏️</span>
-      <p><strong>What to change:</strong> Replace <em>Your Full Name</em>, the subtitle line, the About Me paragraph, the two project entries, and your contact links. Leave the HTML tags (<code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;section&gt;</code> etc.) exactly as they are.</p>
+      <p><strong>What to change:</strong> In the sidebar — your name, role/degree, institution, and the three link URLs. In the main area — the About paragraphs, the three News items (date + one sentence each), the three Projects, and the two Education entries. Leave all the HTML tags and class names exactly as they are.</p>
     </div>
 
     <div class="callout tip">
@@ -480,7 +543,7 @@
 
     <div class="callout go">
       <span class="callout-icon">🚀</span>
-      <p><strong>You're live.</strong> Copy your URL and share it in the room!</p>
+      <p><strong>You're live.</strong> Copy your URL and share it in the room!.</p>
     </div>
   </section>
 
@@ -528,6 +591,57 @@
         <p>Edit any file in GitHub → Commit changes → your site updates within a minute. No re-publishing, no logins to a separate platform, no fees.</p>
       </div>
     </div>
+    <div class="step">
+      <div class="step-num letter">E</div>
+      <div class="step-body">
+        <h4>Separate your styles into a CSS file</h4>
+        <p>Right now all your styling lives inside <code>&lt;style&gt;...&lt;/style&gt;</code> in your HTML. As your site grows, you can move it into its own file. Create a new file called <code>style.css</code> in your repo, paste everything that was between the style tags into it, then replace the style block in your HTML with this one line in the <code>&lt;head&gt;</code>:</p>
+        <div class="code-wrap">
+          <div class="code-header">
+            <span class="code-label">HTML — link to external stylesheet</span>
+            <button class="copy-btn" onclick="copyCode(this, 'css-link')">Copy</button>
+          </div>
+<pre id="css-link">&lt;link rel="stylesheet" href="style.css"&gt;</pre>
+        </div>
+        <p style="margin-top:8px">This keeps your files clean and is how most real websites are built. Do this <em>after</em> your site is live and working — not before!</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-icon">🧠</span>
+      <p><strong>Curious why the tabs don't highlight as you scroll?</strong> That behaviour needs JavaScript — the third language of the web. HTML gives your page structure, CSS gives it style, and JavaScript makes it interactive. Follow the step below to add it now, or save it for later.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num letter">F</div>
+      <div class="step-body">
+        <h4>Make the active tab highlight as you scroll</h4>
+        <p>Open your <code>index.html</code> in GitHub. Find the very last line — <code>&lt;/body&gt;</code> — and paste the block below <em>directly above it</em>. Commit, wait a minute, and your tabs will now light up blue as the matching section scrolls into view.</p>
+        <div class="code-wrap">
+          <div class="code-header">
+            <span class="code-label">JavaScript — paste just before &lt;/body&gt;</span>
+            <button class="copy-btn" onclick="copyCode(this, 'js-tabs')">Copy</button>
+          </div>
+<pre id="js-tabs">&lt;script&gt;
+  const sections = document.querySelectorAll('.section');
+  const tabs = document.querySelectorAll('.tabs a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 60) current = s.id;
+    });
+    tabs.forEach(a => {
+      const active = a.getAttribute('href') === '#' + current;
+      a.style.color = active ? '#2563eb' : '#666';
+      a.style.borderBottom = active ? '2px solid #2563eb' : '';
+    });
+  });
+&lt;/script&gt;</pre>
+        </div>
+        <p style="margin-top:8px">This is your first taste of JavaScript. The code listens for scrolling, checks which section is visible, and updates the tab colour to match. Once you're comfortable with HTML and CSS, learning JavaScript is the natural next step.</p>
+      </div>
+    </div>
   </section>
 
   <hr class="divider"/>
@@ -536,6 +650,9 @@
   <section id="resources">
     <div class="section-label">Links</div>
     <h2>Resources to keep</h2>
+
+    <p style="font-size:14px; margin-bottom: 16px;">Workshop files and GitHub links first, then free learning resources for everything covered tonight and beyond.</p>
+
     <div class="resource-grid">
       <a class="resource-row" href="template.html" target="_blank">
         <div><h4>Live demo portfolio</h4><p>See what a finished version looks like</p></div>
@@ -559,6 +676,66 @@
       </a>
       <a class="resource-row" href="https://education.github.com/pack" target="_blank" rel="noopener">
         <div><h4>GitHub Student Developer Pack</h4><p>Free extras for students — education.github.com/pack</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="section-label" style="margin-top: 36px; margin-bottom: 12px;">Learn HTML &amp; CSS</div>
+    <div class="resource-grid">
+      <a class="resource-row" href="https://www.theodinproject.com/paths/foundations" target="_blank" rel="noopener">
+        <div><h4>The Odin Project — Foundations</h4><p>Free, project-based. Best free HTML/CSS/JS course available. Start here.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML" target="_blank" rel="noopener">
+        <div><h4>MDN — Introduction to HTML</h4><p>The gold-standard reference. Great for looking things up as you build.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps" target="_blank" rel="noopener">
+        <div><h4>MDN — CSS first steps</h4><p>Follows on from the HTML guide above. Same high quality.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://www.freecodecamp.org/learn/2022/responsive-web-design/" target="_blank" rel="noopener">
+        <div><h4>freeCodeCamp — Responsive Web Design</h4><p>Free certification. Hands-on HTML and CSS with instant feedback.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="section-label" style="margin-top: 36px; margin-bottom: 12px;">Learn JavaScript</div>
+    <div class="resource-grid">
+      <a class="resource-row" href="https://javascript.info" target="_blank" rel="noopener">
+        <div><h4>javascript.info</h4><p>The best free JavaScript textbook on the internet. Thorough and beginner-friendly.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" target="_blank" rel="noopener">
+        <div><h4>freeCodeCamp — JavaScript Algorithms</h4><p>Free certification. Good complement to javascript.info.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="section-label" style="margin-top: 36px; margin-bottom: 12px;">Learn Jekyll</div>
+    <div class="resource-grid">
+      <a class="resource-row" href="https://jekyllrb.com/docs/" target="_blank" rel="noopener">
+        <div><h4>Jekyll official docs</h4><p>Start with "Quickstart". Jekyll is the engine behind GitHub Pages themes.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://www.taniarascia.com/make-a-static-website-with-jekyll/" target="_blank" rel="noopener">
+        <div><h4>Tania Rascia — Make a static site with Jekyll</h4><p>A friendly, practical tutorial. Good first read before the official docs.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="section-label" style="margin-top: 36px; margin-bottom: 12px;">Keep practising</div>
+    <div class="resource-grid">
+      <a class="resource-row" href="https://codepen.io" target="_blank" rel="noopener">
+        <div><h4>CodePen</h4><p>Browser-based sandbox — paste HTML/CSS/JS and see it live instantly. Great for experimenting.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://www.cssgridgarden.com" target="_blank" rel="noopener">
+        <div><h4>CSS Grid Garden</h4><p>Learn CSS layouts by growing a garden. Genuinely fun.</p></div>
+        <span class="resource-arrow">→</span>
+      </a>
+      <a class="resource-row" href="https://flexboxfroggy.com" target="_blank" rel="noopener">
+        <div><h4>Flexbox Froggy</h4><p>Learn CSS flexbox (what controls your sidebar layout) by helping frogs.</p></div>
         <span class="resource-arrow">→</span>
       </a>
     </div>

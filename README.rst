@@ -12,7 +12,7 @@ Files
 Usage
 -----
  
-Host this repo on GitHub Pages at ``yourusername.github.io/portfolio-workshop``.
+Host this repo on GitHub Pages at ``yourusername.github.io/ufh-github-workshop``.
  
 License
 -------
